@@ -17,12 +17,14 @@ Vagrant.configure(2) do |config|
   config.vm.define :web do |web|
     config.vm.hostname = "web.sysops.lab"
     web.vm.box = 'puppetlabs/centos-6.6-64-nocm'
+    config.vm.provision "shell", path: "bootstrap-puppet.sh"
     web.vm.network :private_network, ip:'192.168.11.20'
   end
 
   config.vm.define :db do |db|
     config.vm.hostname = "db.sysops.lab"  
     db.vm.box = 'puppetlabs/centos-6.6-64-nocm'
+    config.vm.provision "shell", path: "bootstrap-puppet.sh"
     db.vm.network :private_network, ip:'192.168.11.30'
   end
 end
